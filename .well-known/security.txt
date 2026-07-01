@@ -1,0 +1,4 @@
+Contact: mailto:parthkoisa123@gmail.com
+Expires: 2027-07-01T00:00:00.000Z
+Preferred-Languages: en, gu
+Canonical: https://woodenhub.in/.well-known/security.txt

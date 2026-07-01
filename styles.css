@@ -857,34 +857,80 @@ body.lb-open{overflow:hidden}
 }
 
 /* ─── AREAS ─── */
-.areas{padding:100px 0; background:var(--bg)}
-.cities{
-  display:flex; flex-wrap:wrap; justify-content:center; gap:12px;
-  max-width:900px; margin:0 auto;
+.areas{padding:110px 0; background:var(--bg-2)}
+
+.areas-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(450px, 1fr));
+  gap:40px;
+  margin-top:50px;
 }
-.cities li{
+
+.area-category{
+  background:var(--surface);
+  padding:36px 32px;
+  border-radius:16px;
+  border:1px solid var(--line);
+}
+
+.area-cat-title{
   font-family:var(--ff-display);
-  font-size:22px;
+  font-size:26px;
   font-weight:500;
   color:var(--ink);
-  padding:12px 24px;
-  background:var(--surface);
+  margin-bottom:10px;
+  letter-spacing:-.01em;
+}
+
+.area-cat-desc{
+  font-size:14px;
+  color:var(--muted);
+  margin-bottom:26px;
+  line-height:1.6;
+}
+
+.cities{
+  display:flex; flex-wrap:wrap; gap:10px;
+}
+
+.cities li{
+  font-size:16px;
+  padding:10px 18px;
+  background:var(--bg);
   border:1px solid var(--line);
   border-radius:999px;
-  letter-spacing:-.005em;
-  transition:border-color .2s ease, color .2s ease;
+  color:var(--ink);
+  transition:background .2s ease, border-color .2s ease, transform .2s ease;
 }
-.cities li:hover{border-color:var(--gold); color:var(--gold)}
+
+.cities li:hover{
+  background:var(--gold-soft);
+  border-color:var(--gold);
+  transform:translateY(-2px);
+}
+
 .cities li.soft{
-  color:var(--soft);
-  font-style:italic;
-  font-family:var(--ff-body);
-  font-size:14px;
-  font-weight:400;
-  background:transparent;
+  color:var(--muted);
   border-style:dashed;
+  font-size:14px;
 }
-.cities li.soft:hover{border-color:var(--line-strong); color:var(--soft)}
+
+.cities-primary li{
+  background:var(--gold-soft);
+  border-color:var(--gold);
+  color:var(--gold-2);
+  font-weight:500;
+}
+
+.cities-primary li:hover{
+  background:var(--gold);
+  color:#fff;
+  transform:translateY(-2px);
+}
+
+.cities-secondary li{
+  font-size:15px;
+}
 
 /* ─── CONTACT ─── */
 .contact{padding:110px 0; background:var(--bg-2)}
@@ -1266,9 +1312,39 @@ html[data-lang="gu"] .qa-label{
   .lb-close{top:12px; right:12px; width:40px; height:40px}
 
   /* Cities */
-  .cities li{font-size:18px; padding:10px 18px}
+  /* Areas section mobile */
+  .areas-grid{
+    grid-template-columns:1fr;
+    gap:30px;
+  }
+
+  .area-category{
+    padding:28px 24px;
+  }
+
+  .area-cat-title{
+    font-size:22px;
+  }
+
+  .cities li{
+    font-size:15px;
+    padding:9px 16px;
+  }
+
+  .cities-primary li{
+    font-size:15px;
+  }
+
+  .cities-secondary li{
+    font-size:14px;
+  }
+
   html[data-lang="gu"] .cities li{
-    font-size:19px;
+    font-size:16px;
+    font-family:var(--ff-gu);
+  }
+
+  html[data-lang="gu"] .area-cat-title{
     font-family:var(--ff-gu);
   }
 
