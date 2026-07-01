@@ -2,39 +2,21 @@
 
 🌐 **Live Site**: [https://woodenhub.in](https://woodenhub.in)
 
-Wooden Hub creates beautiful, comfortable and functional spaces for homes, offices, shops and commercial properties across South Gujarat.
+Premium furniture, interior, flooring, tiles, P.O.P., painting, grill and turnkey solutions for homes, offices, shops and commercial spaces across Surat, Vapi, Valsad, Ankleshwar, Bharuch, Dahej, and nearby South Gujarat areas.
 
 ---
 
 ## 🚀 Quick Start
 
-This is a static website built with:
-- HTML5
-- CSS3 (Custom design, no frameworks)
-- Vanilla JavaScript
-- Responsive design (Mobile-first)
-- Bilingual (English + Gujarati)
-
-### Local Development
-
 ```bash
-# Clone the repository
-git clone https://github.com/YOUR-USERNAME/wooden_hub.git
-cd wooden_hub
+# Clone repository
+git clone https://github.com/YOUR-USERNAME/wooden-hub.git
+cd wooden-hub
 
-# Open in browser (any method works):
-
-# Option 1: Python HTTP server
+# Open locally
 python3 -m http.server 8888
-
-# Option 2: VS Code Live Server extension
-# Right-click index.html → Open with Live Server
-
-# Option 3: Just open the file
-open index.html
+# Visit: http://localhost:8888
 ```
-
-Visit: `http://localhost:8888`
 
 ---
 
@@ -43,77 +25,73 @@ Visit: `http://localhost:8888`
 ```
 wooden_hub/
 ├── index.html              # Main HTML file
-├── styles.css              # All styles (design system)
+├── styles.css              # All styles
 ├── script.js               # JavaScript interactions
 ├── whatsapp-logo.svg       # WhatsApp icon
 ├── wooden_hub_logo.png     # Company logo
 ├── projects/               # Project images
 ├── netlify.toml            # Netlify configuration
-├── .github/
-│   └── workflows/
-│       └── deploy.yml      # CI/CD pipeline
-└── README.md               # This file
+└── .github/workflows/      # CI/CD pipeline
+    └── deploy.yml
 ```
 
 ---
 
-## 🔄 CI/CD Pipeline
-
-Automatic deployment to Netlify on every push to `main` branch.
-
-### Setup Instructions
-
-1. **Push to GitHub:**
-   ```bash
-   git init
-   git add .
-   git commit -m "Initial commit"
-   git branch -M main
-   git remote add origin https://github.com/YOUR-USERNAME/wooden_hub.git
-   git push -u origin main
-   ```
-
-2. **Get Netlify credentials:**
-   - Go to [Netlify](https://app.netlify.com)
-   - Settings → Site settings → Copy **Site ID**
-   - User settings → Applications → New access token → Copy **Auth Token**
-
-3. **Add secrets to GitHub:**
-   - Go to your GitHub repo → Settings → Secrets and variables → Actions
-   - Add two secrets:
-     - `NETLIFY_AUTH_TOKEN` (your Netlify auth token)
-     - `NETLIFY_SITE_ID` (your site ID)
-
-4. **Done!** Now every push to `main` automatically deploys to Netlify.
-
----
-
-## 🛠️ Features
+## 🎯 Features
 
 ### Design
 - ✅ Clean, elegant, sober aesthetic
 - ✅ Warm color palette (cream, gold, charcoal)
 - ✅ Responsive (mobile, tablet, desktop)
-- ✅ Bilingual (EN/GU language toggle)
-- ✅ Smooth animations and transitions
+- ✅ Bilingual (English + Gujarati)
+- ✅ Smooth animations
 
 ### Functionality
 - ✅ Sticky header with scroll shadow
 - ✅ Mobile hamburger menu
 - ✅ Language switcher (saves preference)
 - ✅ Header dropdowns (Call/WhatsApp)
-- ✅ Dual phone numbers (98240 06741, 90996 94046)
+- ✅ Dual phone numbers support
 - ✅ WhatsApp integration
 - ✅ Contact form
 - ✅ Project gallery with lightbox
 - ✅ Floating WhatsApp button
 
-### Performance
-- ✅ Optimized images
-- ✅ Minimal dependencies (no frameworks)
-- ✅ Fast load times
-- ✅ Browser caching
-- ✅ Security headers
+---
+
+## 🔄 Auto-Deployment (CI/CD)
+
+Every push to `main` automatically deploys to Netlify via GitHub Actions.
+
+### Setup (One-Time)
+
+**1. Connect Netlify to GitHub:**
+- Go to [app.netlify.com/start](https://app.netlify.com/start)
+- Import existing project → GitHub → Select repo
+- Deploy settings: Branch `main`, Publish directory `.`
+
+**2. Add Site ID to GitHub:**
+- Get Site ID: Netlify → Site settings → Site information
+- GitHub → Settings → Secrets → Actions → New secret
+- Name: `NETLIFY_SITE_ID`, Value: (paste Site ID)
+
+**3. Done!** Push any commit to auto-deploy.
+
+### Daily Workflow
+
+```bash
+# Edit files
+nano index.html
+
+# Commit and push
+git add .
+git commit -m "Update: describe changes"
+git push
+
+# Wait 2 minutes → Live on woodenhub.in ✨
+```
+
+**No auth tokens needed!** Uses Netlify GitHub App (never expires).
 
 ---
 
@@ -134,52 +112,41 @@ Surat, Vapi, Valsad, Ankleshwar, Bharuch, Dahej, and nearby areas
 
 ---
 
-## 🔧 Making Changes
+## 🛠️ Development
 
-### Update Content
-1. Edit `index.html` for content
-2. Edit `styles.css` for design
-3. Edit `script.js` for interactions
-4. Commit and push:
-   ```bash
-   git add .
-   git commit -m "Update content"
-   git push
-   ```
-5. Automatic deployment in ~2 minutes ✨
-
-### Add Images
-1. Add images to `projects/` folder
-2. Update `script.js` projects array
-3. Commit and push
-
----
-
-## 🌐 Deployment
-
-### Automatic (Recommended)
-- Push to `main` branch → Auto-deploys via GitHub Actions
-
-### Manual
-- Drag & drop `wooden_hub` folder to [Netlify Drop](https://app.netlify.com/drop)
-
-### Netlify CLI
+### Local Testing
 ```bash
-netlify deploy --prod
+# Python HTTP server
+python3 -m http.server 8888
+
+# Or Node.js
+npx http-server -p 8888
+
+# Or VS Code Live Server extension
 ```
 
+### Making Changes
+1. Edit HTML/CSS/JS files
+2. Test locally
+3. Commit: `git add . && git commit -m "Update: ..."`
+4. Push: `git push`
+5. Auto-deploys in ~2 minutes
+
 ---
 
-## 📊 Performance Checklist
+## 📄 Configuration
 
-- [x] Minify CSS (future)
-- [x] Optimize images (WebP format)
-- [x] Add service worker (PWA)
-- [x] Enable Brotli compression (Netlify handles this)
-- [x] Add structured data (JSON-LD schema)
-- [x] Set up analytics
-- [x] Add sitemap
-- [x] Configure robots.txt
+### Netlify (`netlify.toml`)
+- ✅ www → non-www redirects
+- ✅ Security headers
+- ✅ Cache control (1 year for assets)
+- ✅ 404 handling
+
+### GitHub Actions (`.github/workflows/deploy.yml`)
+- ✅ Triggers on push to `main`
+- ✅ Triggers on pull requests
+- ✅ Manual trigger available
+- ✅ Uses Netlify GitHub App (no token expiration)
 
 ---
 
@@ -187,26 +154,51 @@ netlify deploy --prod
 
 - ✅ HTTPS enforced
 - ✅ Security headers configured
-- ✅ No sensitive data in repo
-- ✅ CORS configured
 - ✅ XSS protection
 - ✅ Clickjacking protection
+- ✅ No sensitive data in repo
+
+---
+
+## 📊 Performance
+
+- ✅ Minimal dependencies (no frameworks)
+- ✅ Optimized images
+- ✅ Browser caching
+- ✅ CDN distribution (Netlify)
+- ✅ Brotli compression
+
+---
+
+## 📖 Documentation
+
+- **This file:** Quick reference
+- **`DEPLOYMENT_GUIDE.md`:** Detailed deployment instructions
+- **`NETLIFY-GITHUB-APP-SETUP.md`:** Token-free setup guide
+
+---
+
+## 🆘 Troubleshooting
+
+### Workflow not running
+- Check `.github/workflows/deploy.yml` exists
+- Verify Actions enabled: Settings → Actions
+
+### Deployment failed
+- Check GitHub Actions logs
+- Verify `NETLIFY_SITE_ID` secret exists
+- Ensure Netlify connected to GitHub repo
+
+### Site not updating
+- Hard refresh: `Cmd+Shift+R` (Mac) or `Ctrl+F5` (Windows)
+- Wait 5-10 minutes for DNS/CDN propagation
+- Clear Netlify cache: Settings → Build & deploy
 
 ---
 
 ## 📄 License
 
 © 2026 Wooden Hub. All rights reserved.
-
----
-
-## 🙏 Credits
-
-**Design & Development:** Custom-built for Wooden Hub
-**Fonts:** Google Fonts (Inter, Cormorant Garamond, Noto Serif Gujarati)
-**Icons:** Custom SVG icons
-**Hosting:** Netlify
-**CI/CD:** GitHub Actions
 
 ---
 
