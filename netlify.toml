@@ -1,0 +1,109 @@
+# Netlify Configuration for Wooden Hub
+# https://docs.netlify.com/configure-builds/file-based-configuration/
+
+[build]
+  # Since this is a static site, no build command needed
+  publish = "."
+
+  # Build command (not needed for static site, but can add minification later)
+  # command = "npm run build"
+
+[build.environment]
+  # Node version (if you add build tools later)
+  NODE_VERSION = "20"
+
+# Redirect rules
+[[redirects]]
+  # Redirect www to non-www
+  from = "https://www.woodenhub.in/*"
+  to = "https://woodenhub.in/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  # Handle 404s - redirect to homepage
+  from = "/*"
+  to = "/index.html"
+  status = 404
+
+# Headers for security and performance
+[[headers]]
+  for = "/*"
+  [headers.values]
+    # Security headers
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    X-XSS-Protection = "1; mode=block"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "geolocation=(), microphone=(), camera=()"
+
+    # Cache control for HTML (no cache)
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/*.css"
+  [headers.values]
+    # Cache CSS for 1 year
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.js"
+  [headers.values]
+    # Cache JavaScript for 1 year
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.svg"
+  [headers.values]
+    # Cache SVG for 1 year
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.png"
+  [headers.values]
+    # Cache images for 1 year
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.jpg"
+  [headers.values]
+    # Cache images for 1 year
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.jpeg"
+  [headers.values]
+    # Cache images for 1 year
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.webp"
+  [headers.values]
+    # Cache WebP images for 1 year
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Plugin configuration (optional)
+# [[plugins]]
+#   package = "@netlify/plugin-lighthouse"
+
+# Context-specific settings
+[context.production]
+  # Production environment
+  [context.production.environment]
+    CONTEXT = "production"
+
+[context.deploy-preview]
+  # Preview deployments (for pull requests)
+  [context.deploy-preview.environment]
+    CONTEXT = "deploy-preview"
+
+[context.branch-deploy]
+  # Branch deployments
+  [context.branch-deploy.environment]
+    CONTEXT = "branch-deploy"
+
+# Dev server settings (for local development)
+[dev]
+  command = "python3 -m http.server 8888"
+  port = 8888
+  publish = "."

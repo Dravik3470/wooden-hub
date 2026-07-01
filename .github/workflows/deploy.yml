@@ -1,0 +1,53 @@
+name: Deploy to Netlify
+
+on:
+  # Trigger on push to main branch
+  push:
+    branches:
+      - main
+
+  # Trigger on pull request to main
+  pull_request:
+    branches:
+      - main
+
+  # Allow manual trigger
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    name: Deploy to Netlify
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout code
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Step 2: Deploy to Netlify
+      - name: Deploy to Netlify
+        uses: nwtgck/actions-netlify@v3.0
+        with:
+          publish-dir: '.'
+          production-branch: main
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          deploy-message: "Deploy from GitHub Actions - ${{ github.event.head_commit.message }}"
+          enable-pull-request-comment: true
+          enable-commit-comment: true
+          overwrites-pull-request-comment: true
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+        timeout-minutes: 5
+
+      # Step 3: Notify deployment status
+      - name: Deployment status
+        if: always()
+        run: |
+          if [ "${{ job.status }}" == "success" ]; then
+            echo "✅ Deployment successful!"
+            echo "🌐 Live at: https://woodenhub.in"
+          else
+            echo "❌ Deployment failed"
+            exit 1
+          fi
